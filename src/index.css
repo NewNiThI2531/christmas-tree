@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-base: var(--theme-bg-base);
+  --color-surface: var(--theme-surface);
+  --color-surface-strong: var(--theme-surface-strong);
+  --color-unit: var(--theme-unit-bg);
+  --color-input: var(--theme-input-bg);
+  --color-edge: var(--theme-border);
+  --color-ink: var(--theme-text-main);
+  --color-muted: var(--theme-text-muted);
+  --color-title: var(--theme-title-color);
+  --color-accent: var(--theme-accent);
+  --color-accent-text: var(--theme-accent-text);
+  --color-accent-strong: var(--theme-accent-strong);
+  --color-accent-soft: var(--theme-accent-soft);
+  --color-pill-bg: var(--theme-pill-bg);
+  --color-pill-fg: var(--theme-pill-fg);
+
+  --shadow-soft: var(--theme-shadow-soft);
+  --shadow-card: var(--theme-shadow-card);
+}
+
+:root {
+  /* Default: Nordic Cream & Pine (Bright Modern Handcrafted, WCAG AA+ Calibrated) */
+  --theme-bg-base: #faf6ee;
+  --theme-surface: rgba(255, 253, 248, 0.94);
+  --theme-surface-strong: rgba(255, 253, 249, 0.98);
+  --theme-unit-bg: rgba(242, 236, 224, 0.9);
+  --theme-input-bg: rgba(242, 236, 225, 0.88);
+  --theme-border: rgba(29, 43, 36, 0.13);
+  --theme-text-main: #1b2822;
+  --theme-text-muted: #3f5248;
+  --theme-title-color: #18362a;
+  --theme-accent: #d95338;
+  --theme-accent-text: #a8351e;
+  --theme-accent-strong: #1f6e52;
+  --theme-accent-soft: rgba(31, 110, 82, 0.12);
+  --theme-pill-bg: #1f6e52;
+  --theme-pill-fg: #fffdf8;
+  --theme-shadow-soft: 0 10px 26px rgba(34, 44, 38, 0.08);
+  --theme-shadow-card: 0 16px 38px rgba(34, 44, 38, 0.11);
+}
+
+html[data-theme='sunny'] {
+  --theme-bg-base: #eef8ff;
+  --theme-surface: rgba(255, 255, 255, 0.94);
+  --theme-surface-strong: rgba(255, 255, 255, 0.98);
+  --theme-unit-bg: rgba(232, 244, 253, 0.92);
+  --theme-input-bg: rgba(235, 245, 253, 0.92);
+  --theme-border: rgba(22, 50, 79, 0.13);
+  --theme-text-main: #142b40;
+  --theme-text-muted: #3a5770;
+  --theme-title-color: #113a5d;
+  --theme-accent: #ff595e;
+  --theme-accent-text: #aa1f2a;
+  --theme-accent-strong: #0f659e;
+  --theme-accent-soft: rgba(15, 101, 158, 0.12);
+  --theme-pill-bg: #c92a35;
+  --theme-pill-fg: #ffffff;
+  --theme-shadow-soft: 0 10px 26px rgba(20, 43, 64, 0.08);
+  --theme-shadow-card: 0 16px 38px rgba(20, 43, 64, 0.11);
+}
+
+html[data-theme='matcha'] {
+  --theme-bg-base: #f2f5ec;
+  --theme-surface: rgba(253, 252, 246, 0.94);
+  --theme-surface-strong: rgba(253, 252, 246, 0.98);
+  --theme-unit-bg: rgba(236, 240, 227, 0.92);
+  --theme-input-bg: rgba(238, 242, 229, 0.92);
+  --theme-border: rgba(34, 45, 37, 0.13);
+  --theme-text-main: #222d25;
+  --theme-text-muted: #405044;
+  --theme-title-color: #274736;
+  --theme-accent: #c85a32;
+  --theme-accent-text: #a64420;
+  --theme-accent-strong: #2f5a44;
+  --theme-accent-soft: rgba(47, 90, 68, 0.12);
+  --theme-pill-bg: #a64420;
+  --theme-pill-fg: #fffdf8;
+  --theme-shadow-soft: 0 10px 26px rgba(34, 45, 37, 0.08);
+  --theme-shadow-card: 0 16px 38px rgba(34, 45, 37, 0.11);
+}
+
+html[data-theme='hearth'] {
+  --theme-bg-base: #1a2238;
+  --theme-surface: rgba(24, 33, 58, 0.92);
+  --theme-surface-strong: rgba(24, 32, 56, 0.97);
+  --theme-unit-bg: rgba(255, 255, 255, 0.09);
+  --theme-input-bg: rgba(255, 255, 255, 0.1);
+  --theme-border: rgba(255, 248, 235, 0.18);
+  --theme-text-main: #faf6ee;
+  --theme-text-muted: #d2d8e8;
+  --theme-title-color: #fff6e3;
+  --theme-accent: #f4b942;
+  --theme-accent-text: #f4b942;
+  --theme-accent-strong: #ffd67a;
+  --theme-accent-soft: rgba(244, 185, 66, 0.16);
+  --theme-pill-bg: #f4b942;
+  --theme-pill-fg: #1a2238;
+  --theme-shadow-soft: 0 12px 28px rgba(10, 14, 28, 0.34);
+  --theme-shadow-card: 0 18px 42px rgba(10, 14, 28, 0.42);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    background-color: var(--theme-bg-base);
+    color: var(--theme-text-main);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :where(button, input, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--theme-accent-strong);
+    outline-offset: 2px;
+  }
+}
+
+.tabular-digits {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Tactile Craft UI Materials (Zero backdrop-filter, GPU-light transforms)
+   ========================================================================== */
+
+/* 1. Mechanical Split-Flap 3D Flip Physics */
+.split-flap-scene {
+  perspective: 340px;
+  contain: layout style;
+}
+
+.split-flap-top-anim {
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  animation: split-flap-fold-top 185ms cubic-bezier(0.55, 0.05, 0.85, 0.25) forwards;
+}
+
+.split-flap-bottom-anim {
+  transform-origin: 50% 0%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  transform: rotateX(90deg);
+  animation: split-flap-unfold-bottom 215ms cubic-bezier(0.18, 0.92, 0.32, 1.06) 175ms forwards;
+}
+
+@keyframes split-flap-fold-top {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes split-flap-unfold-bottom {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.split-flap-top-shade {
+  animation: split-flap-shade-in 185ms ease-in forwards;
+}
+
+.split-flap-bottom-shade {
+  animation: split-flap-shade-out 215ms ease-out 175ms forwards;
+}
+
+@keyframes split-flap-shade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
+@keyframes split-flap-shade-out {
+  from {
+    opacity: 0.48;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 2. Hot-Stamped Metallic 24K Gold-Foil Typography (Zero repaint cost) */
+.gold-foil-extrude {
+  color: transparent;
+  text-shadow:
+    0 1px 0 #5b3709,
+    0 2px 0 #452805,
+    0 4px 10px rgba(45, 28, 8, 0.25),
+    0 -0.75px 0 rgba(255, 250, 232, 0.92);
+}
+
+.gold-foil-face {
+  background-image: linear-gradient(
+    166deg,
+    #6f430b 0%,
+    #b67919 18%,
+    #f6dc87 33%,
+    #fff4c2 39%,
+    #b26f13 53%,
+    #e5b142 69%,
+    #f7df90 77%,
+    #8d540d 90%,
+    #583206 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 3. Enamel Button Diagonal Specular Shimmer (Compositor transform only) */
+.enamel-shimmer {
+  transform: translate3d(-140%, 0, 0) skewX(-24deg);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .enamel-shimmer {
+  transform: translate3d(260%, 0, 0) skewX(-24deg);
+}
+
+/* 4. Sound-On Mini Equalizer Bars (GPU scaleY only) */
+@keyframes eq-bar-dance {
+  0%,
+  100% {
+    transform: scaleY(0.32);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar-1 {
+  transform-origin: bottom;
+  animation: eq-bar-dance 0.85s ease-in-out infinite;
+}
+
+.eq-bar-2 {
+  transform-origin: bottom;
+  animation: eq-bar-dance 0.65s ease-in-out 0.18s infinite;
+}
+
+.eq-bar-3 {
+  transform-origin: bottom;
+  animation: eq-bar-dance 0.95s ease-in-out 0.34s infinite;
+}
+
+/* 5. Gentle Edison Bulb Warm Pulse & Brass Star Float (Compositor-only) */
+@keyframes bulb-warm-pulse {
+  0%,
+  100% {
+    opacity: 0.76;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.bulb-halo-a {
+  animation: bulb-warm-pulse 3.6s ease-in-out infinite;
+}
+
+.bulb-halo-b {
+  animation: bulb-warm-pulse 4.4s ease-in-out 1.4s infinite;
+}
+
+@keyframes brass-star-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0) rotate(10deg);
+  }
+}
+
+.brass-float-a {
+  animation: brass-star-float 4.2s ease-in-out infinite;
+}
+
+.brass-float-b {
+  animation: brass-star-float 5.2s ease-in-out 0.8s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-flap-top-anim,
+  .split-flap-bottom-anim,
+  .split-flap-top-shade,
+  .split-flap-bottom-shade,
+  .eq-bar-1,
+  .eq-bar-2,
+  .eq-bar-3,
+  .bulb-halo-a,
+  .bulb-halo-b,
+  .brass-float-a,
+  .brass-float-b {
+    animation: none !important;
+  }
+  .enamel-shimmer {
+    display: none;
+  }
+}
+
+/* Native modal <dialog> scroll containment per modern-web-guidance */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: rgba(24, 34, 30, 0.48);
+}

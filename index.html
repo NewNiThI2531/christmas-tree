@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="nordic" data-view="home">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Winter Craft Studio — Christmas Tree &amp; New Year Countdown</title>
+    <meta
+      name="description"
+      content="Handcrafted modern interactive Christmas tree decorating animation, New Year countdown, music box, and festive holiday cards."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var valid = { nordic: 1, sunny: 1, matcha: 1, hearth: 1 };
+          var params = new URLSearchParams(window.location.search);
+          var qTheme = params.get('theme') || params.get('t');
+          if (qTheme && valid[qTheme]) {
+            document.documentElement.dataset.theme = qTheme;
+            return;
+          }
+          var raw = localStorage.getItem('winter-wonderland-prefs-v1');
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && parsed.theme && valid[parsed.theme]) {
+              document.documentElement.dataset.theme = parsed.theme;
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
